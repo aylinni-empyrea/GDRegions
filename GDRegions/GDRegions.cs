@@ -64,21 +64,22 @@ namespace GDRegions
             if (args.MsgID != PacketTypes.MassWireOperation)
                 return;
 
-            TSPlayer.Server.SendInfoMessage("MassWireOperation Received");
-
+#if DEBUG
+          TSPlayer.Server.SendInfoMessage("MassWireOperation Received");         
+#endif
             var plr = TShock.Players[args.Msg.whoAmI];
 
             if (plr == null)
                 return;
-
+#if DEBUG
             TSPlayer.Server.SendInfoMessage("Valid Player Found");
-
-            if (!plr.GetData<bool>("awaitGD"))
+#endif
+      if (!plr.GetData<bool>("awaitGD"))
                 return;
-
+#if DEBUG
             TSPlayer.Server.SendInfoMessage("Awaiting GD Found");
-
-            string rname = plr.GetData<string>("GDname");
+#endif
+      string rname = plr.GetData<string>("GDname");
 
             short startX, startY, endX, endY;
 
@@ -115,9 +116,9 @@ namespace GDRegions
             plr.SetData<bool>("awaitGD", false);
             args.Handled = true;
         }
-        #endregion
+#endregion
 
-        #region Command
+#region Command
         private void GDRegion(CommandArgs args)
         {
             if (args.Parameters.Count < 1)
@@ -145,6 +146,6 @@ namespace GDRegions
             args.Player.SetData<string>("GDname", rname);
             args.Player.SendSuccessMessage("Use The Grand Design to select a region area.");
         }
-        #endregion
+#endregion
     }
 }
