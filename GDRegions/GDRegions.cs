@@ -7,7 +7,7 @@ using TShockAPI;
 
 namespace GDRegions
 {
-    [ApiVersion(1, 25)]
+    [ApiVersion(2, 1)]
     public class GDRegions : TerrariaPlugin
     {
         #region PluginInfo
